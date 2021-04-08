@@ -2,7 +2,7 @@
 todo in django
 
 # Creating virtual environments
-### python3 -m venv venv 
+### `py -m venv venv`
 
 # to run the Django Application
-### py manage.py runser
+### `py manage.py runser`
