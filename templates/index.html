@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<form method="POST" action="/">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter Your Task" name="task">
+    <select id="status" name="status">
+        <option value="doit">doit</option>
+        <option value="working">working</option>
+        <option value="done">done</option>
+    </select>
+    <button type="submit" class="btn">Submit</button>
+</form>
+
+<table>
+    {% for t in todow %}
+    <tr>
+        <td>{{t.title}} </td>
+        <td>{{t.status}}</td>
+        <td>{{t.today}}</td>
+        <td>
+        <form action="del_task" method='POST'>
+        {% csrf_token %}
+        <input type="hidden" value="{{t.id}}" name="id">
+<button type='submit'>Delete Me</button>
+</form></td>
+    </tr>
+    {% endfor %}
+</table>
+<p>
+{% if messages %}
+{% for message in messages %}
+<b>{{message}}</b>
+{% endfor %}
+{% endif %}
+</p>
+{% endblock %}
